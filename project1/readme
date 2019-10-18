@@ -1,0 +1,35 @@
+Project 1: Roman and Arabic Number Converter
+Programmer: Ian Royer
+S18 CSC111
+Professor: Dr. Lee
+
+
+***Read me***
+Info: This program is desiged to convert Arabic numbers(from 1-4999) to Roman Numerals. The program also converts from Roman
+      Numerals to Arabic Numbers
+
+Language: C
+
+Platform: Sloop
+
+File Included: mync.c
+               mync.h
+               r2a.c
+               a2r.c
+Supplement: readme
+            documentation
+            makefile
+
+How to compile: type "make mync"
+                or "gcc -o mync mync.c"
+
+How to run: after compiling, type "./mync"
+
+Known bugs: -the respective converters will only work if the correct input is entered
+                ->if an Arabic number is entered to the Roman converter, the output will be "0"
+                ->if a Roman number is entered to the Arabic converter, the output will be "I"
+            -each converter will only work with numbers from 1-4999
+                ->this is because the roman numeral for 5000 cannot be represented on a computer
+            -the Roman converter will only work if the input is a correctly written Roman numeral
+                ->e.g. do not subtract a number that is more than 10 times greater
+                       

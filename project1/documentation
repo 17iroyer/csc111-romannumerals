@@ -1,0 +1,58 @@
+Project 1: Roman and Arabic Number Converter
+Programmer: Ian Royer
+Course: S18 CSC111
+Professor: Dr. Lee
+
+***Documentation***
+	In short, my Arabic to ROman converter takes each digit from the input and converts them
+individually based on which place (thousands, hundreds, tens, ones) they are in. Each result is then
+concatenated together to make one whole string. My Roman to Arabic converter has a running
+sum of all the numeral values. For every numeral, it checks if subtraction should take place.
+	To start my program, I identified the range of numbers that would be used as input. Since
+the Roman numeral for 5000 cannot be represented on a computer, I decided to limit the input
+range from 0-4999. Then, I wrote the main function and header files (mync.c and mync.h
+respectively) which were both pretty straight forward. I then moved on to the Arabic to Roman
+converter first. At first, I tried using an enumeration to represent the Roman numerals and their
+values. I decided against this when I ran into the issue of converting integer data to character data
+types. Therefor, I decided to possibly use an enumeration on the Roman to Arabic converter later. Since
+Roman numerals are roughly split up based on thousand, hundreds, tens, and ones places, I split up
+the digits, of whatever input was givien by the user, into an array. This array would serve as the base of conversion. The number of digits would then go on to determine how many conversion
+functions would be called. If there was 4 digits in the input, then all four(thousands, hundreds,
+tens, and ones) conversion funtinos would be called. Each of these functions had an integer as a
+parameter, and returned a character pointer. Each individual digit was passed into the respective 
+converter. Each of these converters had the same general idea, but each modified with the different
+numerals associated with each place value. I noticed in my research of Roman numerals that there
+are always exceptions for 4 and 9 in any place values (rules for 4 and 9 are the same for 400
+and 900). These are the two digits that always contain subtraction. With this in mind, I first
+checked if the digit was a 4 or 9. These would be converted to 5-1 or 10-1 respectively in their
+place values. If the digit was not 4 or 9, then I added the appropriate amount of I's, X's, or C's. If
+the digit was above 5, then V, L, or D was added. After each of the converter functions ran, the oupt was concatenated together to produce a final output for a2r.c
+	The Roman to Arabic converter was arguably easier to write than the prior, The user input was stored in a character array for easy access to each character. I then wrot a seperate function
+that stepped through the array and added the character's respective value to a running total. For the
+characters I, X, and C, there is a check to see if the character ahead is greater in value. If
+so, the difference of the two are added to the total, and we move ahead a space to compensate for
+subtracting two numerals. When the end of the input is reached, the final total is returned.
+
+Example 1: The input will be 149. The value 149 is split into an array, with each digit having its
+own index. Sonce 149 has 3 digits, the hundreds tens and ones conversion functions will be called
+with each respective value. First the hundreds function is called, with the argument being 1. Since
+the value is not 4 or 9, and is below 4, the string "C" is returned. This output is concatenated to an
+empty string. Second, the tens function is called, with an argument being 4. Since this value is 4,
+and in the 10's place, the string "XL" is returned. This output is concatenated with the "C" from
+earlier, resulting in "CXL". Finally, the ones finction is called, with 9 being the argument. Since
+this value is 9, and in the ones place, the string "IX" is returned. This is concatenated with the
+"CXL" from earlier, resulting in "CXLIX". The final output is "CXLIX".
+
+Example 2: The input will be "CXLVIII". This string will be stored in an character array, so each
+characer will have its own index. This array is then walked through, one index at a time. The first
+characer is C, and the X ahead of it is not bigger than it, so 100 is added to the running total. The
+next character is X, and the L ahead of it is bigger, so 40 is added to the total since that is
+the difference between 50 and 10. Then the index is incresed twice, since we counted fot the X and L. The next character is V, and the I ahead of it is not bigger, so 5 is added to the
+sum. The next 3 I's have identical processes to one another. A value of 1 is added three times to the
+total. WHen the end of the array is reached, the final total is returned. In this case the value returned
+is 149.
+
+Conclusion: Overall, my program is robust and adaptable. I wrote checks to make sure that the
+integer inputs were within appropriate ranges, and my conversion of Roman numerals can handle
+spaces in between numerals, as well as lowercase and uppercase. Even though everything works, I belive that including an enumeration into the conversion process would have sped up the writing
+process dramatically. It may have even expanded the range above 4999.
